@@ -51,6 +51,24 @@
                     tools:text="Preço: 59.99" />
 
                 <TextView
+                    android:id="@+id/eventDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    tools:text="Data: 24 de Julho de 2021" />
+
+                <TextView
+                    android:id="@+id/eventLocale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    tools:text="Local: 24 de Julho de 2021" />
+
+                <TextView
                     android:id="@+id/eventDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

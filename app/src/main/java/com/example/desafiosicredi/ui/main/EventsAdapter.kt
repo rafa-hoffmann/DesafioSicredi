@@ -1,17 +1,23 @@
 package com.example.desafiosicredi.ui.main
 
+import android.location.Geocoder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.desafiosicredi.R
 import com.example.desafiosicredi.databinding.EventListItemBinding
 import com.example.desafiosicredi.model.Checkin
 import com.example.desafiosicredi.model.Event
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class EventsAdapter(private val click: (Checkin) -> Unit) :
     ListAdapter<Event, EventsAdapter.EventsViewHolder>(EventsAdapter) {
@@ -58,7 +64,28 @@ class EventsAdapter(private val click: (Checkin) -> Unit) :
                     })
                 }
                 eventName.text = data.title
+
+                data.date?.let {
+                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    val dateString = dateFormat.format(Date(it * 1000))
+                    eventDate.text = dateString
+                } ?: run {
+                    eventDate.visibility = View.GONE
+                }
+
                 eventPrice.text = data.price.toString()
+
+                data.longitude?.let { longitude ->
+                    data.latitude?.let { latitude ->
+                        val geocoder = Geocoder(itemView.context, Locale.getDefault())
+
+                        val result = geocoder.getFromLocation(latitude, longitude, 1)
+
+                        result.firstOrNull()?.let {
+                            eventLocale.text = it.getAddressLine(0)
+                        }
+                    }
+                }
                 eventDescription.text = data.description
             }
         }
