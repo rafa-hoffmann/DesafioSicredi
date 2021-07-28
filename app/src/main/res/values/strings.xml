@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Desafio Sicredi</string>
+    <string name="check_in">Check-in</string>
+    <string name="name">Nome</string>
+    <string name="email">E-mail</string>
+    <string name="finish_check_in">Concluir Chek-in</string>
+</resources>
